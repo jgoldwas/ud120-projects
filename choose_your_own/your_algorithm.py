@@ -24,21 +24,31 @@ plt.scatter(grade_slow, bumpy_slow, color = "r", label="slow")
 plt.legend()
 plt.xlabel("bumpiness")
 plt.ylabel("grade")
-plt.show()
+#plt.show()
 #################################################################################
 
 
-### your code here!  name your classifier object clf if you want the 
+### your code here!  name your classifier object clf if you want the
 ### visualization code (prettyPicture) to show you the decision boundary
 
 
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
 
+clf = KNeighborsClassifier(n_neighbors=100)
+print "Start training"
+clf.fit(features_train, labels_train)
+print "End training"
+print "Beging prediction"
+pred = clf.predict(features_test)
+print "End prediction"
+acc = accuracy_score(labels_test, pred)
+print acc
 
-
-
-
+#print "{0} {1} {2}".format(len(clf.predict(features_test)),len(features_test), len(labels_test))
 
 try:
-    prettyPicture(clf, features_test, labels_test)
+    my_return = prettyPicture(clf, features_test, labels_test)
+    print my_return
 except NameError:
-    pass
+    print "Oops!"
