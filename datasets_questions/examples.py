@@ -20,20 +20,19 @@ import math
 
 enron_data = pickle.load(open("../final_project/final_project_dataset.pkl", "r"))
 
-tot_pays = 0
-tot_poi = 0
+examples = 5
+i = 0
 
 for person in enron_data:
-	if enron_data[(person).upper()]["poi"]:
-		tot_poi += 1
-		if enron_data[(person).upper()]["total_payments"] != "NaN":
-			tot_pays += 1
+	if i >= examples:
+		break
+	i += 1
 
+	print person
+	for item in enron_data[person].keys():
 
+		print "		", item, enron_data[person][item]
 
-
-
-print "total_payments: ", tot_pays, " out of poi's:", tot_poi, "(%f percent)" %(100.0*tot_pays/tot_poi)
 
 
 
